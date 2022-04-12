@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"></html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>글쓰기</title>
+</head>
+<body>
+    <form th:action="@{/nav/saveWrite}"  method="post" enctype="multipart/form-data" th:object="${writeBean}">
+        <table border="1" summary="네이버 블로그 게시판">
+        <caption>글쓰기 등록</caption>
+         <colgroup>
+          <col width="100"/>
+          <col width="500"/>
+         </colgroup>
+         
+         <tbody>
+          <tr>
+           <th align="center">제목</th>
+           <td><input type="text" id="bbsTitle" name="bbsTitle" th:field="*{bbsTitle}"></td>
+          </tr>
+          <tr>
+           <td colspan="5"><textarea name="bbsContent" rows="15" cols="75" id="bbsContent" th:field="*{bbsContent}"></textarea></td>
+          </tr>
+          <tr>
+            <a th:object = "${imageBean}">
+                <th align="center">이미지</th>
+                    <td colspan="5"><input multiple type="file" id="imageImage" name="imageImage" th:field="*{imageImage}"></td>
+                </tr>
+            </a>
+           <tr>
+            <th align="center">일반파일</th>
+            <td colspan="5"><input type="file" id="bbsFile" name="bbsFile" th:field="*{bbsFile}"></td>
+           </tr>
+           <tr>
+            <th align="center">동영상</th>
+            <td colspan="5"><input type="file" id="bbsVideo" name="bbsVideo"></td>
+           </tr>
+
+        <tr>
+            <td><input type="submit" value="등록"></td>
+        </tr>
+         </tbody>
+
+        </table>
+            <!-- <table>
+                <tr th:each="emp2: ${"></tr>
+            </table> -->
+    </form>
+    
+</body>
+</html>

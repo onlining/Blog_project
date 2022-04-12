@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head th:include = "fragments/header :: header" />
+
+</head>
+  
+<body>
+    
+    <header th:include = "fragments/menu :: menu" />
+    <a>글쓰기 수정</a>
+    <form th:action="@{'/nav/saveWrite'}" method="post" enctype="multipart/form-data" th:object="${writeBean}">
+        <td><input type="hidden" id="id" name="id" th:field="*{id}"></td>
+                <table border="1" summary="네이버 블로그 게시판">
+                    <caption>글쓰기 등록</caption>
+                     <colgroup>
+                      <col width="100"/>
+                      <col width="500"/>
+                     </colgroup>
+                     
+                     <tbody>
+                      <tr>
+                       <th align="center">제목</th>
+                       <td><input type="text" id="bbsTitle" name="bbsTitle" th:field="*{bbsTitle}"></td>
+                       <!-- <td><a type="text" id="bbsTitle" name="bbsTitle" th:field="*{bbsTitle}"></td> -->
+                      </tr>
+                      <tr>
+                       <td colspan="5"><textarea name="bbsContent" rows="15" cols="75" id="bbsContent" th:field="*{bbsContent}"></textarea></td>
+                      </tr>
+                      <tr>
+                        <th align="center">이미지</th>
+                        <td colspan="5"><input type="file" id="bbsImage" name="bbsImage"></td>
+                       </tr>
+                       <tr>
+                        <th align="center">일반파일</th>
+                        <td colspan="5"><input type="file" id="bbsFile" name="bbsFile"></td>
+                       </tr>
+                       <tr>
+                        <th align="center">동영상</th>
+                        <td colspan="5"><input type="file" id="bbsVideo" name="bbsVideo"></td>
+                       </tr>
+            
+                    <tr>
+                        <td><input type="submit" value="등록"></td>
+                    </tr>
+                     </tbody>
+            
+                </table>
+           
+    </form>
+
+</body>
+<div th:include = "fragments/copyright :: copyright" />

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head th:include = "fragments/header :: header" />
+
+</head>
+    
+<body>
+    <header th:include = "fragments/menu :: menu" />
+    <h1>블로그 콘텐츠 상세</h1>
+    <table th:object="${c_write}">
+
+        <tr>
+            <td>
+                <a th:each="image:${c_image}">
+                    <span th:if="${image.imageImage != null}">
+                        <img th:src="@{|/totalmenu/display1/${image.id}|}" alt="" width="400">
+                    </span>
+                </a> 
+                
+                <span th:if="${c_write.bbsFile != null}">
+                    <a th:href="@{|/totalmenu/display2/*{id}|}">FIle</a>
+                </span>
+                <span th:if="${c_write.bbsVideo != null}">
+                    <video th:src="@{|/totalmenu/display3/*{id}|}">video</video>
+                </span>
+                
+                <!-- <a th:src="@{|/totlamenu/display/*{id}|" alth="" width="400"></a> -->
+
+            </td>
+            <td>
+                <table>
+                    <tr>
+                        <td class="c1" th:text="*{bbsTitle}"></td>
+                    </tr>
+                    <tr>
+                        <td class="c1" th:text="*{bbsContent}"></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <table>
+        <tr th:each="emp: ${list}">
+            <span th:if="*{emp.commentType == id}">
+                <td>
+                    <td>댓글작성자:</td>
+                    <td th:text="${emp.commentEmail}"></td>
+                </td>
+                <td>
+                    <td>댓글내용:</td>
+                    <td th:text="${emp.commentContent}"></td>
+                </td>
+                <td>
+                    <td class="c1"><a th:href="@{|/totalmenu/edit/${emp.id}|}">수정</a></td>
+                    <td class="c1"><a th:href="@{|/nav/delete/${emp.id}|}">삭제</a></td>
+                </td>
+            </span>
+        </tr>
+    
+    </table>
+    
+    <form th:action="@{|/totalmenu/detail/${c_write.id}|}" method="post" th:object="${commentBean}">
+        <table>
+            <tr>
+                <td class="c1">댓글작성자</td>
+                <td><input type="text" id="commentEmail" th:field="*{commentEmail}"></td>
+            </tr>
+            <tr>
+                <td class="c1">댓글내용</td>
+                <td><textarea name="commentContent" id="commentContent" cols="45" rows="3" th:field="*{commentContent}"></textarea></td>
+            </tr>
+                <td><input type="submit" value="등록"></td>
+            </tr>
+        </table>
+       
+    </form>
+
+
+    </div>
+
+</body>
+
+<div th:include = "fragments/copyright :: copyright" />

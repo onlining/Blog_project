@@ -1,0 +1,36 @@
+<header th:fragment="menu">
+    <div class="navbar" role="navigation"> 
+        <a href="#" class="navbar-item">
+            이웃블로그 
+            <a>ㅣ</a>
+        </a>
+
+        <a href="#" class="navbar-item">
+            블로그홈
+            <a>ㅣ</a>
+        </a>
+
+        <a class="navbar-item">
+                <select name="none" onchange="window.open(value,'_blank');">
+                    <a>
+                        <option value="">내메뉴</option>
+                        <option th:value="@{/nav/write}">글쓰기</option>
+                        <option value="@{/nav/management}">관리</option>
+                        <option value="@{/nav/statistics}">통계</option>
+                        <option value="@{/nav/skinchange}">스킨 변경</option>   
+                        <option value="@{/nav/detail}">세부 디자인 설정</option> 
+                    </a>    
+                </select>
+                <a>ㅣ</a>
+        </a>
+
+        <button class="favorite styled" onclick="alert('Hello World!')" type="button">
+            사랑이 
+            
+        </button>
+
+        <button class="favorite styled" onclick="alert('Hello World!')" type="button"> <img src="img/button.png" alt="button">
+            <a>ㅣ</a>
+        </button>
+    </div>
+</header>

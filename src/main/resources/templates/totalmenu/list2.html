@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head th:include = "fragments/header :: header" />
+
+</head>
+    
+<body>
+    <header th:include = "fragments/menu :: menu" />
+
+    <table>
+        <tr th:each="emp: ${list}">
+            <td>
+                <!-- <span th:if="${emp.bbsImage != null}">
+                    <img th:src="@{|/totalmenu/display/*{id}|}" alt="" width="400"> -->
+                </span>
+                <span th:if="${emp.bbsFile != null}">
+                    <a th:href="@{|/totalmenu/display2/*{id}|}">
+                </span>
+                <span th:if="${emp.bbsVideo != null}">
+                    <video th:src="@{|/totalmenu/display3/*{id}|}" >
+                </span>
+            </td>
+            <td>
+                <table>
+                    <tr>
+                        <td>제목</td>
+                        <td><a th:href="@{'/totalmenu/detail/' + ${emp.id}}" th:text="${emp.bbsTitle}"></td>
+                    </tr>
+                    <tr>
+                        <td>내용</td>
+                        <td th:text="${emp.bbsContent}"></td>
+                    </tr>
+                    <tr>
+                        <td><a th:href="@{'/nav/edit/' + ${emp.id}}" th:text="수정"></td>
+                    </tr>
+                    <tr>
+                        <td><a th:href="@{'/nav/public/' + ${emp.id}}" th:text="공유"></td>
+                        
+                    </tr>
+                    <tr>
+                        <td><a th:href="@{'/nav/delete/' + ${emp.id}}" th:text="삭제"></td>
+                        
+                    </tr>
+                   
+                   
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <div th:include = "fragments/copyright :: copyright" />

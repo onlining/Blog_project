@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head th:include = "fragments/header :: header" />
+
+</head>
+    
+<body>
+    <header th:include = "fragments/menu :: menu" />
+        <form th:action="@{'/totalmenu/edit/' + ${comment.id}}" method="post" >
+            <table>
+                <tr>
+                    
+                   
+            
+                </tr>
+                <tr th:each="emp : ${comment}">
+                    
+                    <!-- <input type="hidden" th:text = "${emp.id}"></input> -->
+                    <th>댓글작성자</th>
+                    <input type="text" name="commentEmail" id="commentEmail" th:text="${emp.commentEmail}">
+                    <!-- <td th:text = "${emp.commentEmail}">kt</td> -->
+                    <!-- <td th:text = "${emp.commentContent}">5</td> -->
+                    <th>댓글내용</th>
+                    <input type="textarea" name="commentContent" id="commentContent" th:text="${emp.commentContent}">
+                    <input type="submit" role="button" value="수정">
+
+                </tr>
+
+            </table>
+        </form>
+    
+</body>
+
+<div th:include = "fragments/copyright :: copyright" />

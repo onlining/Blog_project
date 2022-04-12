@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head th:include = "fragments/header :: header" />
+
+</head>
+    
+<body>
+    <header th:include = "fragments/menu :: menu" />
+    <!-- <div> 
+        세션추가하면 이렇게 바꿔야 로그인 로그아웃 구현가능 
+        
+        <p th:if="${session.loginMember}"><a th:href="@{/logout}">로그아웃</a></p>
+        <p th:unless="${session.loginMember}"><a th:href="@{/login}">로그인</a></p></a></p>
+        <p><a th:href="@{/login/loginForm}">로그아웃</a></p> 
+    
+    </div>
+    <h1></h1>
+
+        <div id="toprigthMenu">
+            <li><a class="rigthmenuLink" href="#">프롤로그</a></li>
+            <li><a class="rigthmenuLink" href="#">블로그</a></li>
+        </div>
+
+        <div id="topleftMenu">
+            <li><a class="leftmenuLink" href="#">지도</a></li>
+            <li><a class="leftmenuLink" href="#">서재</a></li>
+            <li><a class="leftmenuLink" href="#">메모</a></li>
+            <li><a class="leftmenuLink" href="#">태그</a></li>
+        </div>
+    
+    </div>
+
+<div id="total-bar">
+    <div id="left-total">
+        <div id="profile-bar">
+            <img th:src="@{/img/dognwan.jpg}">
+            <p>꼬물이</p>
+            <p>(dno06103)</p>
+            <p></p>
+            <a>서이추 해주시는 분들은 다 열답방 해주신다고 서이추해주시는거죠? 저도 시간날때마다 열답방 + 댓글갑니다 ㅎㅎ 근데 계속 답방이랑 댓글 없으면 다른  소통해주시는 이웃님들 블로그 한번 더 들어가기 위해서 취소해야할것 같아요 ^^ 다들 잘 부탁드려요 ^^ </a>
+            <a><button type="button" onclick="alert('Hello World!')" value="Edit">Edit</button></a>
+            <p></p>
+            <p href="#">프로필   </p>
+
+            <a th:href="@{/nav/write}">글쓰기 </a>
+           
+            <a href="#">관리</a>
+            <a href="#">통계</a>
+        
+        </div>
+
+        <div id="category-bar">
+            <p>카테고리</p>
+            <p></p>
+            <a th:href="@{/totalmenu/list}" button type="button">전체보기<button type="button" onclick="alert('Hello World!')" value="Edit">Edit</button></a>
+                <ul id="category">
+                    <li><a class="leftmenuLink" href="#">자취
+                        <ol>
+                            <li><a class="leftmenuLink" href="#">일상</li>
+                            <li><a class="leftmenuLink" href="#">이밥차짝퉁</a></li>
+                            <li><a class="leftmenuLink" href="#">흑석맛집</a></li>
+                            <li><a class="leftmenuLink" href="#">그외맛집</a></li>
+                            <li><a class="leftmenuLink" href="#">오늘일기</a></li>
+                            <li><a class="leftmenuLink" href="#">문화생활</a></li>
+                            <li><a class="leftmenuLink" href="#">쿠킹클래스</a></li>
+                        </ol>
+                    </li>
+
+                    <li><a class="leftmenuLink" href="#">공부
+                        <ol>
+                            <li><a class="leftmenuLink" href="#">노량진강남교회</li>
+                            <li><a class="leftmenuLink" href="#">예비위코더</a></li>
+                            <li><a class="leftmenuLink" href="#">패스트캠프파이썬</a></li>
+                        </ol>
+                    </li>
+
+
+                </ul>
+            
+            
+
+        </div>
+
+        <div id="neighbor-bar">
+
+
+        </div>
+    </div>
+
+    <div id="right-total">
+        
+        <a href="#">블라블라 </a>
+
+    </div>
+</div> -->
+
+<table>
+    <tr th:each="emp: ${list}">
+        <td>
+            <!-- <span th:if="${emp.bbsImage != null}">
+                <img th:src="@{|/totalmenu/display/*{id}|}" alt="" width="400"> -->
+            </span>
+            <span th:if="${emp.bbsFile != null}">
+                <a th:href="@{|/totalmenu/display2/*{id}|}">
+            </span>
+            <span th:if="${emp.bbsVideo != null}">
+                <video th:src="@{|/totalmenu/display3/*{id}|}" >
+            </span>
+        </td>
+        <td>
+            <table>
+                <tr>
+                    <td>제목</td>
+                    <td><a th:href="@{'/totalmenu/detail/' + ${emp.id}}" th:text="${emp.bbsTitle}"></td>
+                </tr>
+                <tr>
+                    <td>내용</td>
+                    <td th:text="${emp.bbsContent}"></td>
+                </tr>
+                <tr>
+                    <td><a th:href="@{'/nav/edit/' + ${emp.id}}" th:text="수정"></td>
+                </tr>
+                <tr>
+                    <td><a th:href="@{'/nav/public/' + ${emp.id}}" th:text="공유"></td>
+                    
+                </tr>
+                <tr>
+                    <td><a th:href="@{'/totalmenu/delete/' + ${emp.id}}" th:text="삭제"></td>
+                    
+                </tr>
+               
+               
+            </table>
+        </td>
+    </tr>
+</table>
+<div>
+    <th:block th:each="page : ${#numbers.sequence(1,page_total)}">
+        <a th:href="@{|/totalmenu/list?page_num=${page}|}"
+            th:text="|[${page}]|">[1]</a>
+    </th:block>
+</div>
+<form th:action="@{'/totalmenu/list/search'}" method="GET">
+    <div>
+        <input name="keyword" type="text" placeholder="검색어를 입력해주세요">
+    </div>
+        <button>검색하기</button>
+        
+    </body>
+</form>
+<div th:include = "fragments/copyright :: copyright" />

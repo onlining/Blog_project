@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org"></html>
+
+<head th:include = "fragments/header :: header" />
+<body>
+<header th:include = "fragments/menu :: menu" />
+    <h1>로그인</h1>
+    <form action="" th:object="${loginBean}" method="POST">
+        <table>
+            <tr>
+                <td>로그인이메일</td>
+                <td><input type="email" id="email" th:field="*{email}"></td>
+                <td th:if="${#fields.errors('email')}" th:errors="*{email}" class="error"></td>
+            </tr>
+            <tr>
+                <td>비밀번호</td>
+                <td><input type="password" id="password" th:field="*{password}"></td>
+                <td th:if="${#fields.errors('password')}" th:errors="*{password}" class="error"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="로그인"></td>
+                <td><input type="button" value="취소" th:onclick="|location.href='@{/}'|"></td>
+            </tr>
+        </table>
+
+    </form>
+    <div th:include = "fragments/copyright :: copyright" />
+
+
+</body>
